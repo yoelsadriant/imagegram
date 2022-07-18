@@ -1,0 +1,16 @@
+{
+  "name": "imagegram",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "aws-sdk": "^2.1171.0",
+    "body-parser": "^1.20.0",
+    "connect-timeout": "^1.9.0",
+    "express": "^4.17.1",
+    "moment": "^2.29.4",
+    "serverless-http": "^2.7.0",
+    "serverless-offline-s3": "^5.1.0",
+    "sharp": "^0.30.7",
+    "ulid": "^2.3.0"
+  }
+}

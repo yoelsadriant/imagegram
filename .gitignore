@@ -1,0 +1,6 @@
+node_modules
+.serverless
+minio-data
+minio
+mc
+

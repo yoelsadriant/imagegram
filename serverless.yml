@@ -1,0 +1,161 @@
+service: imagegram
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+  - serverless-offline-s3
+
+custom:
+  endpoints:
+    dynamodb: 'http://localhost:8000'
+
+  bucketName: 'imagegram-bucket'
+
+  tableNames:
+    imagegram: 'Imagegram'
+
+  indexNames:
+    gsi1: 'UserPostByTotalComment'
+    gsi2: 'AllPostByTotalComment'
+
+  apiTimeout: 50
+
+  limitPage: 5
+
+  offline : 'true'
+
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs14.x
+  region: ap-southeast-2
+  timeout: 30
+  apiGateway:
+    apiKeys:
+        - imagegramApiKey
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - "arn:aws:dynamodb:::${self:custom.tableNames.imagegram}"
+        - Effect: Allow
+          Action:
+            - "s3:Put*"
+            - "s3:Get*"
+            - "s3:DeleteObject"
+          Resource: arn:aws:s3:::${self:custom.bucketName}/*
+  environment:
+    DYNAMODB_ENDPOINT: ${self:custom.endpoints.dynamodb}
+    IS_OFFLINE: ${self:custom.offline}
+    IMAGEGRAM_TABLE: ${self:custom.tableNames.imagegram}
+    USER_POST_BY_TOTAL_COMMENT_INDEX: ${self:custom.indexNames.gsi1}
+    ALL_POST_BY_TOTAL_COMMENT_INDEX: ${self:custom.indexNames.gsi2}
+    API_TIMEOUT: ${self:custom.apiTimeout}
+    BUCKET_NAME: ${self:custom.bucketName}
+    LIMIT_PAGE: ${self:custom.limitPage}
+
+functions:
+  ImagegramAPI:
+      handler: handler/main.handler
+      events:
+        - http:
+            path: /imagegram/view/postcomment
+            method: get
+            private: true
+            request:
+              template:
+                application/json: >
+                  {
+                    "postId" : "$input.params('postId')",
+                    "startKey" : "$input.params('startKey')"
+                  }
+        - http:
+            path: /imagegram/view/allpost
+            method: get
+            private: true
+            request:
+              template:
+                application/json: >
+                  {
+                    "startKey" : "$input.params('startKey')"
+                  }
+        - http:
+            path: /imagegram/view/allpostuser
+            method: get
+            private: true
+            request:
+              template:
+                application/json: >
+                  {
+                    "username" : "$input.params('username')",
+                    "startKey" : "$input.params('startKey')"
+                  }
+        - http:
+            path: /imagegram/view/userpost
+            method: get
+            private: true
+            request:
+              template:
+                application/json: >
+                  {
+                    "username" : "$input.params('username')",
+                    "startKey" : "$input.params('startKey')"
+                  }
+        - http:
+            path: /imagegram/posting/comment
+            method: post
+            private: true
+        - http:
+            path: /imagegram/delete/comment
+            method: delete
+            private: true
+            request:
+              template:
+                application/json: >
+                  {
+                    "username": "$input.params('username')"
+                    "postId" : "$input.params('postId')",
+                    "commentId" : "$input.params('commentId')"
+                  }
+        - http:
+            path: /imagegram/posting/create
+            method: post
+            private: true
+        
+resources:
+  Resources:
+    Imagegram:
+      Type: "AWS::DynamoDB::Table"
+      Properties: 
+        AttributeDefinitions: 
+          - AttributeName: "PK"
+            AttributeType: "S"
+          - AttributeName: "SK"
+            AttributeType: "S"
+        KeySchema: 
+          - AttributeName: "PK"
+            KeyType: "HASH"
+          - AttributeName: "SK"
+            KeyType: "RANGE"
+        BillingMode: "PAY_PER_REQUEST"
+        GlobalSecondaryIndexes:
+          - IndexName: 'UserPostByTotalComment'
+            KeySchema:
+            - AttributeName: "PK"
+              KeyType: "HASH"
+            - AttributeName: "TotalComment"
+              KeyType: "RANGE"
+            Projection:
+              ProjectionType: ALL
+    FileBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucketName}
+        AccessControl: Private
