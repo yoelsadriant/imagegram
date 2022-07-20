@@ -1,0 +1,135 @@
+{
+  "version": "1.0",
+  "image": {
+    "name": "/home/videosdownloader/public_html/image/public/uploadt/lake-1658097755345-9437.jpg",
+    "baseName": "lake-1658097755345-9437.jpg",
+    "format": "JPEG",
+    "formatDescription": "JPEG",
+    "mimeType": "image/jpeg",
+    "class": "DirectClass",
+    "geometry": {
+      "width": 3840,
+      "height": 2160,
+      "x": 0,
+      "y": 0
+    },
+    "resolution": {
+      "x": 96,
+      "y": 96
+    },
+    "printSize": {
+      "x": 40,
+      "y": 22.5
+    },
+    "units": "PixelsPerInch",
+    "type": "TrueColor",
+    "baseType": "Undefined",
+    "endianness": "Undefined",
+    "colorspace": "sRGB",
+    "depth": 8,
+    "baseDepth": 8,
+    "channelDepth": {
+      "red": 8,
+      "green": 8,
+      "blue": 1
+    },
+    "pixels": 24883200,
+    "imageStatistics": {
+      "Overall": {
+        "min": 0,
+        "max": 255,
+        "mean": 118.231,
+        "median": 99.6667,
+        "standardDeviation": 18798.1,
+        "kurtosis": -1.24421,
+        "skewness": 0.113803,
+        "entropy": 0.952143
+      }
+    },
+    "channelStatistics": {
+      "red": {
+        "min": 0,
+        "max": 255,
+        "mean": 139.974,
+        "median": 119,
+        "standardDeviation": 18402.9,
+        "kurtosis": -1.19639,
+        "skewness": 0.104605,
+        "entropy": 0.967078
+      },
+      "green": {
+        "min": 0,
+        "max": 255,
+        "mean": 132.926,
+        "median": 113,
+        "standardDeviation": 18159.2,
+        "kurtosis": -1.30852,
+        "skewness": 0.0954881,
+        "entropy": 0.983885
+      },
+      "blue": {
+        "min": 0,
+        "max": 255,
+        "mean": 81.7937,
+        "median": 67,
+        "standardDeviation": 19832.1,
+        "kurtosis": -1.36145,
+        "skewness": 0.476793,
+        "entropy": 0.905467
+      }
+    },
+    "renderingIntent": "Perceptual",
+    "gamma": 0.454545,
+    "chromaticity": {
+      "redPrimary": {
+        "x": 0.64,
+        "y": 0.33
+      },
+      "greenPrimary": {
+        "x": 0.3,
+        "y": 0.6
+      },
+      "bluePrimary": {
+        "x": 0.15,
+        "y": 0.06
+      },
+      "whitePrimary": {
+        "x": 0.3127,
+        "y": 0.329
+      }
+    },
+    "matteColor": "#BDBDBD",
+    "backgroundColor": "#FFFFFF",
+    "borderColor": "#DFDFDF",
+    "transparentColor": "#00000000",
+    "interlace": "None",
+    "intensity": "Undefined",
+    "compose": "Over",
+    "pageGeometry": {
+      "width": 3840,
+      "height": 2160,
+      "x": 0,
+      "y": 0
+    },
+    "dispose": "Undefined",
+    "iterations": 0,
+    "compression": "JPEG",
+    "quality": 100,
+    "orientation": "Undefined",
+    "properties": {
+      "comment": "CREATOR: gd-jpeg v1.0 (using IJG JPEG v62), quality = 100\n",
+      "date:create": "2022-07-17T22:43:36+00:00",
+      "date:modify": "2022-07-17T22:43:36+00:00",
+      "jpeg:colorspace": "2",
+      "jpeg:sampling-factor": "2x2,1x1,1x1",
+      "signature": "40970ec1b49d02943173286f6c08639ab91991a65b94083c2baaf8f16d840cd3"
+    },
+    "tainted": false,
+    "filesize": "3.99632MB",
+    "numberPixels": "8294400",
+    "pixelsPerSecond": "25.8559MB",
+    "userTime": "0.320u",
+    "elapsedTime": "0:01.320",
+    "version": "ImageMagick 7.0.10-58 Q16 x86_64 2021-01-14 https://imagemagick.org"
+  }
+}
