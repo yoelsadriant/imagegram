@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const timeout = require('connect-timeout');
 
+const userRoute = require('../routes/userRoute')
 const postRoute = require('../routes/postRoute')
 const commentRoute = require('../routes/commentRoute')
 const viewRoute = require('../routes/viewRoute')
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 /**
  * API Processing
  */
+app.use(userRoute)
 app.use(postRoute)
 // // limiting timeout for non-image upload
 app.use(timeout(process.env.CONFIG_API_TIMEOUT))

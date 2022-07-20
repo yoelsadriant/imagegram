@@ -66,6 +66,14 @@ functions:
       handler: handler/main.handler
       events:
         - http:
+            path: /imagegram/user/create
+            method: post
+            private: true
+        - http:
+            path: /imagegram/user/find/{username}
+            method: get
+            private: true
+        - http:
             path: /imagegram/view/postcomment
             method: get
             private: true
